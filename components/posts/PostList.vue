@@ -1,6 +1,13 @@
 <template>
     <section class="post-list">
-      <PostPreview :isAdmin="isAdmin" id="1" title="Here will go the title" previewText="Here will go the preview text" thumbnail="https://www.vapulus.com/en/wp-content/uploads/2019/01/tech.jpg"/>
+      <PostPreview 
+      v-for="post in posts"
+      :isAdmin="isAdmin"
+      :key="post.id"
+      :id="post.id" 
+      :title="post.title" 
+      :previewText="post.previewText" 
+      :thumbnail="post.thumbnail"/>
     </section>
 </template>
 <script>
@@ -11,6 +18,10 @@ export default {
     isAdmin : {
       type : Boolean,
       default : false
+    },
+    posts : {
+      type : Array,
+      required : true
     }
   },
   components : {
