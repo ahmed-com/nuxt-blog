@@ -1,18 +1,37 @@
 <template>
     <div class="single-post-page">
         <section class="post">
-            <h1 class="post-title">here will go the title</h1>
+            <h1 class="post-title">{{loadedPost.title}}</h1>
             <div class="post-details">
-                <div class="post-detail">Last updated on :</div>
-                <div class="post-detail">Written by :</div>
+                <div class="post-detail">Last updated on :{{loadedPost.updatedDate}}</div>
+                <div class="post-detail">Written by : {{loadedPost.author}}</div>
             </div>
-            <p>here will go the post content</p>
+            <p>{{loadedPost.content}}</p>
         </section>
         <section class="post-feedback">
             <p>happy to get your feedback at <a href="mailto:ahmed0grwan@gmail.com">ahmed0grwan@gmail.com</a></p>
         </section>
     </div>
 </template>
+<script>
+export default {
+  asyncData(context,callback){
+    setTimeout(()=>{
+      callback(null,{
+        loadedPost : {
+            id : "2",
+            title : `this is the second title : ${context.params.id}`, 
+            previewText : "the content is bla bla bla", 
+            thumbnail : "https://www.vapulus.com/en/wp-content/uploads/2019/01/tech.jpg",
+            author : 'ahmed',
+            updatedDate : new Date(),
+            content : 'this is the content you should\'ve expected'
+          }
+      })
+    },1000);
+  }
+}
+</script>
 
 <style scoped>
 .single-post-page {
